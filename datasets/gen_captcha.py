@@ -31,7 +31,8 @@ def _gen_captcha(img_dir, num_per_image, n, width, height, choices):
     image = ImageCaptcha(width=width, height=height)
 
     print('generating %s epoches of captchas in %s' % (n, img_dir))
-    for _ in range(n):
+    for epoch_num in range(n):
+        print('epoch_num: %s'%epoch_num)
         for i in itertools.permutations(choices, num_per_image):
             captcha = ''.join(i)
             fn = os.path.join(img_dir, '%s_%s.png' % (captcha, uuid.uuid4()))

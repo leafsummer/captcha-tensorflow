@@ -33,7 +33,7 @@ def main(_):
     meta, train_data, test_data = input_data.load_data(FLAGS.data_dir, flatten=True)
     print('data loaded. train images: %s. test images: %s' % (train_data.images.shape[0], test_data.images.shape[0]))
 
-    LABEL_SIZE = meta['label_size']
+    LABEL_SIZE = meta['label_size'] * meta["num_per_image"]
     IMAGE_WIDTH = meta['width']
     IMAGE_HEIGHT = meta['height']
     IMAGE_SIZE = IMAGE_WIDTH * IMAGE_HEIGHT
@@ -108,6 +108,8 @@ def main(_):
         test_summary, r_test = sess.run([merged, accuracy], feed_dict={x: test_data.images, y_: test_data.labels})
         train_writer.add_summary(test_summary, i)
         print('testing accuracy = %.2f%%' % (r_test * 100, ))
+        saver = tf.train.Saver()
+        save_path = saver.save(sess, "./model.ckpt")
 
 
 if __name__ == '__main__':
