@@ -3,6 +3,7 @@
 ### 验证码识别
 
 基于TensorFlow, 使用CNN模型进行验证码识别，不需要对图片进行切割，运行环境Ubuntu 16.04，Python 2.7
+
 修改github上的两个项目:
 
 [captcha-tensorflow](https://github.com/JackonYang/captcha-tensorflow)
